@@ -4,7 +4,6 @@ package com.game.repository;
 import com.game.entity.Player;
 import com.game.entity.PlayerSearchCriteria;
 import com.game.service.PageableImpl;
-import com.sun.istack.internal.NotNull;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -29,6 +28,7 @@ public class PlayerCriteriaRepository {
     @Qualifier(value = "entityManager")
     private final EntityManager entityManager;
     private final CriteriaBuilder criteriaBuilder;
+
 
     public PlayerCriteriaRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
