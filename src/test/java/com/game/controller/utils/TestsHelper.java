@@ -57,7 +57,7 @@ public class TestsHelper {
                     "\"experience\": 63986" +
                     "}";
 
-    public static final String NEGATIVE_BIRTHDAY_JSON =
+     public static final String NEGATIVE_BIRTHDAY_JSON =
             "{" +
                     "\"name\": \"Амарылис\"," +
                     "\"title\":\"Прозелит\"," +

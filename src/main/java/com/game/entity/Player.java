@@ -1,7 +1,5 @@
 package com.game.entity;
 
-import com.game.entity.Profession;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -11,6 +9,7 @@ import java.util.GregorianCalendar;
 public class Player {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // ID игрока
 
     @Column(name = "name", length = 12)
@@ -19,11 +18,13 @@ public class Player {
     @Column(name = "title", length = 30)
     private String title; // Титул персонажа (до 30 знаков включительно)
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "race")
-    private Race race; // Расса персонажа
+    private Race race; // Раса персонажа
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "profession")
-    private com.game.entity.Profession profession; // Профессия персонажа
+    private Profession profession; // Профессия персонажа
 
     @Column(name = "experience", length = 10000000)
     private Integer experience; // Опыт персонажа. Диапазон значений 0..10,000,000
@@ -44,12 +45,21 @@ public class Player {
     public Player() {
     }
 
-    public void setId(Long id) {
-        if (id > 0) {
-            this.id = id;
-        }
-
+    public Player(String name, String title, Race race, Profession profession, Date birthday, Boolean banned, Integer experience, Integer level, Integer untilNextLevel) {
+        this.name = name;
+        this.title = title;
+        this.race = race;
+        this.profession = profession;
+        this.experience = experience;
+        this.level = level;
+        this.untilNextLevel = untilNextLevel;
+        this.birthday = birthday;
+        this.banned = banned;
     }
+
+//  //  public void setId(Long id) {
+//            this.id = id;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -80,10 +90,7 @@ public class Player {
     }
 
     public void setBirthday(Date birthday) {
-        if (birthday.after(new GregorianCalendar(2000, 1, 1).getTime()) && birthday.before(new GregorianCalendar(3000, 1, 1).getTime())) {
-            this.birthday = birthday;
-        }
-
+        this.birthday = birthday;
     }
 
     public void setBanned(Boolean banned) {
